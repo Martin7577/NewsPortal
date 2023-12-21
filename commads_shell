@@ -1,0 +1,37 @@
+from rest.models import *
+
+u1 = User.objects.create_user('Max')
+u2 = User.objects.create_user('Tom')
+
+a1 = Author.objects.create(user=u1)
+a2 = Author.objects.create(user=u2)
+
+cat1 = Category.objects.create(nameCategory='cat1')
+cat2 = Category.objects.create(nameCategory='cat2')
+cat3 = Category.objects.create(nameCategory='cat3')
+cat4 = Category.objects.create(nameCategory='cat4')
+
+post1 = Post.objects.create(article_or_news='AR', post_author=a1)
+post2 = Post.objects.create(article_or_news='AR', post_author=a2)
+post3 = Post.objects.create(article_or_news='NW', post_author=a1)
+
+pc1 = PostCategory.objects.create(post=post1, category=cat1)
+pc1_1 = PostCategory.objects.create(post=post1, category=cat3)
+pc2 = PostCategory.objects.create(post=post2, category=cat2)
+pc3 = PostCategory.objects.create(post=post3, category=cat4)
+
+com1 =Comment.objects.create(text_comment='всем салам алекум', post=post1, user=u1)
+com1_1 =Comment.objects.create(text_comment='админ лох', post=post1, user=u2)
+com2 =Comment.objects.create(text_comment='ничего не пон...', post=post2, user=u1)
+com3 =Comment.objects.create(text_comment='классная новость', post=post3, user=u2)
+
+post1.like()
+post2.dislike()
+post3.like()
+com1.like()
+com1_1.dislike()
+com2.like()
+com3.like()
+
+a1.update_rating()
+a2.update_rating()

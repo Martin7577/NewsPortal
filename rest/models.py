@@ -84,22 +84,22 @@ class Author(models.Model):
         post_rating = 0
         comments_rating = 0
         post_comments_rating = 0
-        posts = Post.objects.filter(author=self)
+        posts = Post.objects.filter(post_author=self)
 
         for i in posts:
-            post_rating += i.rating_post
+            post_rating += i.ratings
 
         comments = Comment.objects.filter(user=self.user)
 
         for c in comments:
-            comments_rating += c.rating_post
+            comments_rating += c.ratings
 
         post_comments = Comment.objects.filter(post__author=self)
 
         for b in post_comments:
-            post_comments_rating += b.rating_post
+            post_comments_rating += b.ratings
 
-        self.rating_post = post_rating * 3 + comments_rating + post_comments_rating
+        self.ratings = post_rating * 3 + comments_rating + post_comments_rating
         self.save()
 
 class Category(models.Model):
@@ -116,16 +116,16 @@ class Post(models.Model):
     time_in = models.DateTimeField(auto_now_add=True)
     header = models.CharField(max_length=255)
     text_post = models.TextField()
-    rating_post = models.IntegerField(default = 0)
+    ratings = models.IntegerField(default = 0)
     category = models.ManyToManyField('Category', through='PostCategory')
     post_author = models.ForeignKey('Author', on_delete = models.CASCADE)
 
     def like(self):
-        self.rating_post += 1
+        self.ratings += 1
         self.save()
 
     def dislike(self):
-        self.rating_post -= 1
+        self.ratings -= 1
         self.save()
 
     def preview(self):
@@ -138,14 +138,14 @@ class PostCategory(models.Model):
 class Comment(models.Model):
     text_comment = models.TextField()
     date_time = models.DateTimeField(auto_now_add=True)
-    rating_comment = models.IntegerField(default = 0)
+    ratings = models.IntegerField(default = 0)
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def like(self):
-        self.rating_comment += 1
+        self.ratings += 1
         self.save()
 
     def dislike(self):
-        self.rating_comment -= 1
+        self.ratings -= 1
         self.save()
 
