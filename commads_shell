@@ -33,5 +33,24 @@ com1_1.dislike()
 com2.like()
 com3.like()
 
-a1.update_rating()
-a2.update_rating()
+a1.update_ratings()
+a2.update_ratings()
+
+sr1 = Author.objects.all().order_by('-ratings').first()
+Author.objects.filter(id=sr1.id).values('user__username', 'ratings').first()
+
+sr2 = Post.objects.all().order_by('rating')[:1]
+for j in sr2:
+    f"Data : {j.time_in.day}"
+    f"Rating: {j.rating}"
+    j.post_author.user
+    j.header
+    j.preview()
+
+sr3 = Comment.objects.all().filter(post=sr2)
+for d in sr3:
+	F"Data : {d.date_time.day}/{d.date_time.month}/{d.date_time.year}"
+	d.post
+	F"Rating : {d.rating}"
+	d.text_comment
+
