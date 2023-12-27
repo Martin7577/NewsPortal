@@ -2,15 +2,13 @@
 
 {% load custom_filters %}
 
-{% load custom_filters %}
-
 {% block title %}
 New
 {% endblock title %}
 
 {% block content %}
 <a href="/news/">Вернуться ко всем постам</a>
-<h3>{{ new.header }}</h3>
+<h3>{{ new.header|censor }}</h3>
 <h5>Дата публикации: {{ new.time_in|date:'d M.Y'}}</h5>
 <table>
     <tr>
@@ -18,7 +16,7 @@ New
         <td>Автор</td>
     </tr>
     <tr>
-        <td>{{ new.text_post}}</td>
+        <td>{{ new.text_post|censor}}</td>
         <td>{{ new.post_author.user }}</td>
     </tr>
     </table>
