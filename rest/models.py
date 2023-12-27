@@ -130,9 +130,9 @@ class Post(models.Model):
     time_in = models.DateTimeField(auto_now_add=True)
     header = models.CharField(max_length=255)
     text_post = models.TextField()
-    rating = models.IntegerField(default = 0)
+    rating = models.IntegerField(default=0)
     category = models.ManyToManyField(Category, through='PostCategory')
-    post_author = models.ForeignKey(Author, on_delete = models.CASCADE)
+    post_author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
     def like(self):
         self.rating += 1
