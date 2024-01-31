@@ -23,4 +23,5 @@ urlpatterns = [
     # Делаем так, чтобы все адреса из нашего приложения (rest/urls.py)
     # подключались к главному приложению с префиксом news/.
     path('news/', include('rest.urls')),
+    path('search/', include('django.contrib.flatpages.urls')),
 ]

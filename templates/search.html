@@ -1,0 +1,45 @@
+{% extends 'flatpages/default.html' %}
+{% load custom_filters %}
+{% load custom_tags %}
+
+
+{% block title %}
+Posts
+{% endblock title %}
+
+
+{% block content %}
+<h1>Всего постов: {{ news|length }}</h1>
+<a href="/news/">Вернуться ко всем постам</a>
+
+
+   {# Добавляем форму, которая объединяет набор полей, которые будут отправляться в запросе #}
+   <form action="" method="get">
+       {# Переменная, которую мы передали через контекст, может сгенерировать нам форму с полями #}
+       {{ filterset.form.as_p }}
+       {# Добавим кнопку отправки данных формы #}
+       <input type="submit" value="Найти" />
+   </form>
+
+   <hr>
+   {% if news %}
+       <table>
+             <tr>
+               <td>Заголовок</td>
+               <td>Дата</td>
+               <td>Текст</td>
+           </tr>
+
+           {% for new in news %}
+           <tr>
+               <td><a href="/news/{{ new.id }}"> {{ new.header|censor }}</a></td>
+               <td>{{ new.time_in|date:'d M.Y'}}</td>
+               <td>{{ new.text_post|censor|truncatechars:20 }}</td>
+           </tr>
+           {% endfor %}
+
+       </table>
+   {% else %}
+       <h2>Постов нет!</h2>
+   {% endif %}
+{% endblock %}

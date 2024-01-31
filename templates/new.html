@@ -7,9 +7,10 @@ New
 {% endblock title %}
 
 {% block content %}
-<a href="/news/">Вернуться ко всем постам</a>
+
 <h3>{{ new.header|censor }}</h3>
 <h5>Дата публикации: {{ new.time_in|date:'d M.Y'}}</h5>
+<a href="/news/">Вернуться ко всем постам</a>
 <table>
     <tr>
         <td>Содержание</td>
