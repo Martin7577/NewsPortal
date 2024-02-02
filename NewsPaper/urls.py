@@ -24,4 +24,7 @@ urlpatterns = [
     # подключались к главному приложению с префиксом news/.
     path('news/', include('rest.urls')),
     path('search/', include('django.contrib.flatpages.urls')),
+    path('', include('protect.urls')),
+    path('sign/', include('sign.urls')),
+    path('accounts/', include('allauth.urls')),
 ]
