@@ -63,6 +63,7 @@ class Command(BaseCommand):
             max_instances=1,
             replace_existing=True,
         )
+
         logger.info("Added job 'my_job'.")
 
         scheduler.add_job(
