@@ -38,6 +38,10 @@ class Author(models.Model):
 
 class Category(models.Model):
     nameCategory = models.CharField(max_length = 255, unique = True)
+    subscribers = models.ManyToManyField(User, related_name="categories")
+
+    def __str__(self):
+        return self.nameCategory
 
 class Post(models.Model):
     article = 'AR'
@@ -73,6 +77,9 @@ class Post(models.Model):
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.post.header} {self.category.nameCategory}'
 
 class Comment(models.Model):
     text_comment = models.TextField()
