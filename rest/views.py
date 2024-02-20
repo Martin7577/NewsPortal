@@ -6,8 +6,7 @@ from .filters import PostFilter
 from .forms import PostForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
-
+from .tasks import send_mails, send_email_week
 
 class NewsList(ListView):
     # Указываем модель, объекты которой мы будем выводить
@@ -56,6 +55,15 @@ class PostCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     # и новый шаблон, в котором используется форма.
     template_name = 'post_create.html'
     permission_required = ('rest.add_post',)
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        if self.request.path == '/news/articles/create/':
+            post.type = 'A'
+        post.save()
+        send_mails.delay(post.pk)
+        send_email_week.delay()
+        return super().form_valid(form)
 
 
 # Добавляем представление для изменения товара.

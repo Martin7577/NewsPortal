@@ -16,15 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# from .views import IndexView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('pages/', include('django.contrib.flatpages.urls')),
-    # Делаем так, чтобы все адреса из нашего приложения (rest/urls.py)
-    # подключались к главному приложению с префиксом news/.
     path('news/', include('rest.urls')),
     path('search/', include('django.contrib.flatpages.urls')),
     path('', include('protect.urls')),
     path('sign/', include('sign.urls')),
     path('accounts/', include('allauth.urls')),
+    # path('', IndexView.as_view()),
 ]
