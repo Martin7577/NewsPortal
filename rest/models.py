@@ -3,12 +3,17 @@ from datetime import datetime
 from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.urls import reverse
+from django.core.cache import cache
+
 
 
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE)
     ratings = models.IntegerField(default = 0)
+
+    def __str__(self):
+        return self.user.username
 
     def update_ratings(self):
         post_rating = 0
@@ -58,7 +63,9 @@ class Post(models.Model):
     category = models.ManyToManyField(Category, through='PostCategory')
     post_author = models.ForeignKey(Author, on_delete=models.CASCADE)
 
-
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        cache.delete(f'product-{self.pk}')
 
     def get_absolute_url(self):
         return reverse('post_detail', args=[str(self.id)])
@@ -73,6 +80,9 @@ class Post(models.Model):
 
     def preview(self):
        return f' {self.header} \n{self.text_post[0:123]}...'
+
+    def __str__(self):
+        return self.header
 
 class PostCategory(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)

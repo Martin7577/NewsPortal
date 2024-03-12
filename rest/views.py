@@ -7,6 +7,10 @@ from .forms import PostForm
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from .tasks import send_mails, send_email_week
+from django.core.cache import cache
+
+
+
 
 class NewsList(ListView):
     # Указываем модель, объекты которой мы будем выводить
@@ -22,13 +26,15 @@ class NewsList(ListView):
     paginate_by = 10
 
 class NewsDetail(DetailView):
-    # Модель всё та же, но мы хотим получать информацию по отдельному товару
-    model = Post
-    # Используем другой шаблон — product.html
     template_name = 'new.html'
-    # Название объекта, в котором будет выбранный пользователем продукт
     context_object_name = 'new'
-
+    queryset = Post.objects.all()
+    def get_object(self, *args, **kwargs):
+        obj = cache.get(f'product-{self.kwargs["pk"]}', None)
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'product-{self.kwargs["pk"]}', obj)
+        return obj
 
 class PostSearch(ListView):
     model = Post
