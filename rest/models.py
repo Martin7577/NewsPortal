@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.db.models import Sum
 from django.urls import reverse
 from django.core.cache import cache
+from django.utils.translation import pgettext_lazy
+from django.utils.translation import gettext as _
 
 
 
@@ -42,11 +44,19 @@ class Author(models.Model):
 
 
 class Category(models.Model):
-    nameCategory = models.CharField(max_length = 255, unique = True)
+    nameCategory = models.CharField(max_length=255,help_text=_('category name'), unique=True)
     subscribers = models.ManyToManyField(User, related_name="categories")
 
     def __str__(self):
         return self.nameCategory
+class MyModel(models.Model):
+    name = models.CharField(max_length=100)
+    kind = models.ForeignKey(
+        Category,
+        on_delete=models.CASCADE,
+        related_name='kinds',
+        verbose_name=pgettext_lazy('help text for MyModel model', 'This is the help text'),
+    )
 
 class Post(models.Model):
     article = 'AR'

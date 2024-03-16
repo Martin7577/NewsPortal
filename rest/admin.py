@@ -1,5 +1,14 @@
 from django.contrib import admin
-from .models import Author, Category, Post, PostCategory, Comment
+from .models import Author, Category, Post, PostCategory, Comment, MyModel
+from modeltranslation.admin import TranslationAdmin
+
+
+# class CategoryAdmin(TranslationAdmin):
+#     model = Category
+
+
+class MyModelAdmin(TranslationAdmin):
+    model = MyModel
 
 
 # создаём новый класс для представления товаров в админке
@@ -16,7 +25,7 @@ class PostCategoryAdmin(admin.ModelAdmin):
     list_display = [field.name for field in PostCategory._meta.get_fields()]
 
 
-
+admin.site.register(MyModel)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Category)
 admin.site.register(Post, PostAdmin)

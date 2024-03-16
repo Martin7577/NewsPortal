@@ -2,48 +2,50 @@
 
 {% load custom_filters %}
 
+{% load i18n %}
+
+
 
 {% block title %}
 News
 {% endblock title %}
 
 {% block content %}
-<h1>Все новости: {{ news|length }}</h1>
-<a href="/news/search">Поиск новостей</a>
-<a href="/news/create">Создать новость</a>
-<a href="/">Профиль</a>
-
-
+<h1>{% trans "All the news" %}: {{ news|length }}</h1>
+<a href="/news/search">{% trans "News Search" %}</a>
+<a href="/news/create">{% trans "Create News" %}</a>
+<a href="/">{% trans "Profile" %}</a>
 
 
 
 <hr>
-   {% if news %}
-       <table>
+    {% if news %}
+        <table>
             <tr>
-                <td>Заголовок</td>
-                <td>Дата публикации</td>
-                <td>Содержание</td>
-                <td>Рейтинг</td>
-                <td>Автор</td>
+                <td>{% trans "Header" %}</td>
+                <td>{% trans "Date of publication" %}</td>
+                <td>{% trans "Content" %}</td>
+                <td>{% trans "Rating" %}</td>
+                <td>{% trans "Author" %}</td>
+                <td>{% trans "Category" %}</td>
 
 
-           </tr>
-           {% for new in news %}
-           <tr>
+            </tr>
+            {% for new in news %}
+            <tr>
                <td><a href="/news/{{ new.id }}"> {{ new.header|censor }}</a></td>
                <td>{{ new.time_in|date:'d M.Y'}}</td>
                <td>{{ new.text_post|censor|truncatechars:20 }}</td>
                <td>{{ new.rating }}</td>
                <td>{{ new.post_author.user }}</td>
+               <td>{{ new.category }}</td>
 
            </tr>
            {% endfor %}
-
-       </table>
-{% else %}
-       <h2>Новостей нет!</h2>
-   {% endif %}
+        </table>
+    {% else %}
+        <h2>Новостей нет!</h2>
+    {% endif %}
 
 {# Добавляем пагинацию на страницу #}
 
