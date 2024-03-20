@@ -71,7 +71,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'NewsPaper.middlewares.TimezoneMiddleware',
+
+    'rest.middlewares.TimezoneMiddleware',
+
     'allauth.account.middleware.AccountMiddleware'
     
 
