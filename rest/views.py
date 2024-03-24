@@ -8,7 +8,26 @@ from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from .tasks import send_mails, send_email_week
 from django.core.cache import cache
+from rest_framework import viewsets
+from rest_framework import permissions
 
+from .serializers import *
+from .models import *
+
+
+class PostViewset(viewsets.ModelViewSet):
+   queryset = Post.objects.all()
+   serializer_class = PostSerializer
+
+
+class CommentViewset(viewsets.ModelViewSet):
+   queryset = Comment.objects.all()
+   serializer_class = CommentSerializer
+
+
+class CategoryViewset(viewsets.ModelViewSet):
+   queryset = Category.objects.all()
+   serializer_class = CategorySerializer
 
 
 
