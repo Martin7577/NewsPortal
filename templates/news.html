@@ -27,7 +27,7 @@ News
                 <td>{% trans "Content" %}</td>
                 <td>{% trans "Rating" %}</td>
                 <td>{% trans "Author" %}</td>
-                <td>{% trans "Category" %}</td>
+<!--                <td>{% trans "Category" %}</td>-->
 
 
             </tr>
@@ -38,7 +38,7 @@ News
                <td>{{ new.text_post|censor|truncatechars:20 }}</td>
                <td>{{ new.rating }}</td>
                <td>{{ new.post_author.user }}</td>
-               <td>{{ new.category }}</td>
+<!--               <td>{{ new.category }}</td>-->
 
            </tr>
            {% endfor %}

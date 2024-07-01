@@ -193,3 +193,186 @@ Traceback (most recent call last):
   File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/kombu/connection.py", line 476, in _reraise_as_library_errors
     raise ConnectionError(str(exc)) from exc
 kombu.exceptions.OperationalError: Error 61 connecting to localhost:6379. Connection refused.
+2024-04-26 14:17:51,436 ERROR /Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/utils/log.py Internal Server Error: /accounts/signup/ (<class 'smtplib.SMTPAuthenticationError'>, SMTPAuthenticationError(535, b'5.7.8 Error: authentication failed: Invalid user or password! 1714141071-oHOjJjDXlqM0'), <traceback object at 0x10764cb40>)
+Traceback (most recent call last):
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/decorators.py", line 20, in wrap
+    resp = function(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/views/decorators/debug.py", line 141, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/views.py", line 252, in dispatch
+    return super(SignupView, self).dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/views.py", line 92, in dispatch
+    response = super(RedirectAuthenticatedUserMixin, self).dispatch(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/views.py", line 224, in dispatch
+    return super(CloseableSignupMixin, self).dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/views.py", line 120, in post
+    response = self.form_valid(form)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/views.py", line 270, in form_valid
+    return complete_signup(
+           ^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/utils.py", line 241, in complete_signup
+    return perform_login(
+           ^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/utils.py", line 166, in perform_login
+    return _perform_login(request, login)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/utils.py", line 176, in _perform_login
+    response = adapter.pre_login(request, login.user, **hook_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/adapter.py", line 465, in pre_login
+    send_email_confirmation(request, user, signup=signup, email=email)
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/utils.py", line 399, in send_email_confirmation
+    email_address.send_confirmation(request, signup=signup)
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/models.py", line 93, in send_confirmation
+    confirmation.send(request, signup=signup)
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/models.py", line 126, in send
+    get_adapter().send_confirmation_mail(request, self, signup)
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/adapter.py", line 644, in send_confirmation_mail
+    self.send_mail(email_template, emailconfirmation.email_address.email, ctx)
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/adapter.py", line 187, in send_mail
+    msg.send()
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/mail/message.py", line 300, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 127, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 94, in open
+    self.connection.login(self.username, self.password)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/smtplib.py", line 750, in login
+    raise last_exception
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Error: authentication failed: Invalid user or password! 1714141071-oHOjJjDXlqM0')
+2024-04-26 14:17:51,438 ERROR /Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/servers/basehttp.py "POST /accounts/signup/ HTTP/1.1" 500 192261 None
+2024-04-26 14:18:22,383 ERROR /Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/utils/log.py Internal Server Error: /accounts/signup/ (<class 'smtplib.SMTPAuthenticationError'>, SMTPAuthenticationError(535, b'5.7.8 Error: authentication failed: Invalid user or password! 1714141102-LIOwXqDXqqM0'), <traceback object at 0x1077fd940>)
+Traceback (most recent call last):
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/decorators.py", line 20, in wrap
+    resp = function(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/views/decorators/debug.py", line 141, in sensitive_post_parameters_wrapper
+    return view(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/views/decorators/cache.py", line 80, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/views.py", line 252, in dispatch
+    return super(SignupView, self).dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/views.py", line 92, in dispatch
+    response = super(RedirectAuthenticatedUserMixin, self).dispatch(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/views.py", line 224, in dispatch
+    return super(CloseableSignupMixin, self).dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/views.py", line 120, in post
+    response = self.form_valid(form)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/views.py", line 266, in form_valid
+    self.user, resp = form.try_save(self.request)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/forms.py", line 399, in try_save
+    adapter.send_account_already_exists_mail(email)
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/adapter.py", line 631, in send_account_already_exists_mail
+    self.send_mail("account/email/account_already_exists", email, ctx)
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/allauth/account/adapter.py", line 187, in send_mail
+    msg.send()
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/mail/message.py", line 300, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 127, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 94, in open
+    self.connection.login(self.username, self.password)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/smtplib.py", line 750, in login
+    raise last_exception
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/smtplib.py", line 739, in login
+    (code, resp) = self.auth(
+                   ^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/smtplib.py", line 662, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 Error: authentication failed: Invalid user or password! 1714141102-LIOwXqDXqqM0')
+2024-04-26 14:18:22,385 ERROR /Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/servers/basehttp.py "POST /accounts/signup/ HTTP/1.1" 500 163564 None
+2024-07-01 12:03:26,262 ERROR /Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/utils/log.py Internal Server Error: /news/ (<class 'AttributeError'>, AttributeError("'tuple' object has no attribute '_default_manager'"), <traceback object at 0x105efaa40>)
+Traceback (most recent call last):
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/views/generic/list.py", line 154, in get
+    self.object_list = self.get_queryset()
+                       ^^^^^^^^^^^^^^^^^^^
+  File "/Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/views/generic/list.py", line 34, in get_queryset
+    queryset = self.model._default_manager.all()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'tuple' object has no attribute '_default_manager'
+2024-07-01 12:03:26,264 ERROR /Users/timur_1/PycharmProjects/NewsPortal/venv/lib/python3.11/site-packages/django/core/servers/basehttp.py "GET /news/ HTTP/1.1" 500 89180 None

@@ -73,7 +73,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',
 
     'rest.middlewares.TimezoneMiddleware',
-    'rest_framework',
+    # 'rest_framework',
 
     'allauth.account.middleware.AccountMiddleware',
 
